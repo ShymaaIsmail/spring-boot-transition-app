@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.transitiondemoapp.transitiondemo.model.Employee;
+import com.example.transitiondemoapp.transitiondemo.service.EmployeeService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,10 @@ public class EmployeeController {
 	
 private List<Employee> employeeList = new ArrayList<Employee>();
  
+
+    @Autowired
+    protected EmployeeService employeeService;
+
     public EmployeeController(){
         employeeList.add(new Employee(1l, "emp1"));
         employeeList.add(new Employee(2l, "emp2"));
@@ -26,23 +32,36 @@ private List<Employee> employeeList = new ArrayList<Employee>();
 
     @RequestMapping("/employee/all")
     public List<Employee> findAll() {
-        return employeeList;
+       
+            List<Employee>  employees = employeeService.findAll();  
+            
+            return employees;
     }
 
+    @RequestMapping("employee/findByName/{name}")
+    public List<Employee> findByName(@PathVariable String name){
+    
+    List<Employee>  employees = employeeService.findEmployeeByName(name);  
+    
+    return employees;
+    }
+    
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
-    public Employee addemployee(Employee employee) {
+    public Employee postEmployee(Employee employee) {
         employeeList.add(employee);
         return employee;
     }
 
-    @RequestMapping("/employee/findby/{id}")
+    @RequestMapping("/employee/findBy/{id}")
     public Employee findById(@PathVariable Long id) {
         return employeeList.stream().
                  filter(employee -> employee.getId().equals(id)).
                    findFirst().get();
     }
-	@GetMapping("/")
+	
+    
+    @GetMapping("/")
 	public String index() {
-		return "Greetings from Spring Boot!";
+        return "home.jsp";  
 	}
 }

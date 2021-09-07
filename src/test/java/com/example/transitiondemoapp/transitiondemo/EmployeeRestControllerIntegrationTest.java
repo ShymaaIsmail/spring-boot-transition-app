@@ -16,8 +16,8 @@ import static org.hamcrest.Matchers.*;
 
   class EmployeeRestControllerIntegrationTest extends AbstractTest  {
 
-   Employee Employee_1 = new Employee(1l, "Rayven Yor");
-   Employee Employee_2 = new Employee(2l, "David Landup");
+   Employee Employee_1 = new Employee(1l, "RayvenYor");
+   Employee Employee_2 = new Employee(2l, "DavidLandup");
    Employee Employee_3 = new Employee(3l, "Jane Doe");
    
 
@@ -26,6 +26,11 @@ import static org.hamcrest.Matchers.*;
    public void setUp() {
       super.setUp();
    } 
+
+   @Test  
+void contextLoads()   
+{  
+}  
 
    @Test
 public void getAllEmployees_success() throws Exception {

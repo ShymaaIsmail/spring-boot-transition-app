@@ -1,11 +1,9 @@
 package com.example.transitiondemoapp.transitiondemo.service;
-import org.springframework.stereotype.Service;
-
-@Service  
-public class EmployeeService  
-{  
-public void hireEmployee()  
-{  
-//business code  
-}  
-}  
+import com.example.transitiondemoapp.transitiondemo.model.Employee;
+import java.util.List;
+  
+public interface EmployeeService {
+        List<Employee> findAll();
+        List<Employee> findEmployeeByName(String name);
+}
+    

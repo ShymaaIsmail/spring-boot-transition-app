@@ -1,7 +1,15 @@
 package com.example.transitiondemoapp.transitiondemo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+ 
+@Entity
 public class Employee {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name; 
   Employee() {}
@@ -27,4 +35,12 @@ public class Employee {
   public void setName(String name) {
     this.name = name;
   }   
+
+
+@Override
+public String toString() 
+{
+return "Employee [id=" + id + ", uname=" + name + "]";
 }
+}
+
