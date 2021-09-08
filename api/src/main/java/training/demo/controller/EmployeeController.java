@@ -7,37 +7,27 @@ import training.demo.domain.entity.Employee;
 import training.demo.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
  
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class EmployeeController {
-	
-private List<Employee> employeeList = new ArrayList<Employee>();
- 
-
+	 
     @Autowired
     protected EmployeeService employeeService;
 
-    public EmployeeController(){
-        employeeList.add(new Employee(1l, "emp1"));
-        employeeList.add(new Employee(2l, "emp2"));
-        employeeList.add(new Employee(3l, "emp3"));
-        employeeList.add(new Employee(4l, "emp4"));
-    }
-
-    @RequestMapping("/employee/all")
+    @GetMapping("/employee/all")
     public List<Employee> findAll() {
-       
-            List<Employee>  employees = employeeService.findAll();  
-            
-            return employees;
+       List<Employee>  employees = employeeService.findAll();  
+       return employees;
     }
 
-    @RequestMapping("employee/findByName/{name}")
+    @GetMapping("employee/findByName/{name}")
     public List<Employee> findByName(@PathVariable String name){
     
     List<Employee>  employees = employeeService.findEmployeeByName(name);  
@@ -45,17 +35,24 @@ private List<Employee> employeeList = new ArrayList<Employee>();
     return employees;
     }
     
-    @RequestMapping(value = "/employee", method = RequestMethod.POST)
-    public Employee postEmployee(Employee employee) {
-        employeeList.add(employee);
-        return employee;
+    @GetMapping("/employee/findBy/{id}")
+    public Employee findById(@PathVariable Long id) {
+        return employeeService.findEmployeeByID(id);
     }
 
-    @RequestMapping("/employee/findBy/{id}")
-    public Employee findById(@PathVariable Long id) {
-        return employeeList.stream().
-                 filter(employee -> employee.getId().equals(id)).
-                   findFirst().get();
+
+    @PostMapping("/employee")
+    public Long postEmployee(@RequestBody Employee employee) {
+        Long addedEmployeeId= employeeService.addNewEmployee(employee);
+        return addedEmployeeId;
     }
+
+    @PutMapping(value = "/employee")
+    public Employee putEmployee(@RequestBody Employee employee) {
+        Employee updatedEmployeeId= employeeService.updateEmployee(employee);
+        return updatedEmployeeId;
+    } 
+
+    
 	 
 }
