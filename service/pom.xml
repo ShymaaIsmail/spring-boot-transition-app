@@ -20,6 +20,11 @@
       </dependency>
       <dependency>
         <groupId>training.demo</groupId>
+        <artifactId>training.demo.dto</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>training.demo</groupId>
         <artifactId>training.demo.repository</artifactId>
         <version>${project.version}</version>
       </dependency>

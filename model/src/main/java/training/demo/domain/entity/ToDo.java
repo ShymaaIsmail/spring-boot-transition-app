@@ -1,5 +1,5 @@
 package training.demo.domain.entity;
-
+  
 import org.joda.time.DateTime;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*; 
 
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
@@ -42,4 +42,3 @@ public class ToDo {
    
  
 }
-

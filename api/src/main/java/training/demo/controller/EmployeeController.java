@@ -1,6 +1,8 @@
 package training.demo.controller;
  
 import java.util.List;
+
+import training.demo.domain.dto.EmployeeDTO;
 import training.demo.domain.entity.Employee;
 import training.demo.service.EmployeeService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,33 +26,31 @@ public class EmployeeController {
     }
 
     @GetMapping()
-    public List<Employee> findAll() {
-       List<Employee>  employees = employeeService.findAll();  
+    public List<EmployeeDTO> findAll() {
+       List<EmployeeDTO>  employees = employeeService.findAll();  
        return employees;
     }
 
     @GetMapping("findByName/{name}")
-    public List<Employee> findByName(@PathVariable String name){
-    
-    List<Employee>  employees = employeeService.findEmployeeByName(name);  
-    
+    public List<EmployeeDTO> findByName(@PathVariable String name){
+    List<EmployeeDTO>  employees = employeeService.findEmployeeByName(name);  
     return employees;
     }
     
     @GetMapping("findById/{id}")
-    public Employee findById(@PathVariable Long id) {
+    public EmployeeDTO findById(@PathVariable Long id) {
         return employeeService.findEmployeeByID(id);
     }
     
     @PostMapping()
-    public Long postEmployee(@RequestBody Employee employee) {
-        Long addedEmployeeId= employeeService.addNewEmployee(employee);
+    public Long postEmployee(@RequestBody EmployeeDTO employeeDto) {
+        Long addedEmployeeId= employeeService.addNewEmployee(employeeDto);
         return addedEmployeeId;
     }
 
     @PutMapping()
-    public Employee putEmployee(@RequestBody Employee employee) {
-        Employee updatedEmployeeId= employeeService.updateEmployee(employee);
+    public EmployeeDTO putEmployee(@RequestBody EmployeeDTO employeeDto) {
+        EmployeeDTO updatedEmployeeId= employeeService.updateEmployee(employeeDto);
         return updatedEmployeeId;
     } 
 

@@ -1,46 +1,47 @@
  package training.demo.service;
+import training.demo.domain.dto.EmployeeDTO;
 import  training.demo.domain.entity.Employee;
 import java.util.List;
 import training.demo.repository.EmployeeRepository;
 import training.demo.service.EmployeeService;   
 import org.springframework.stereotype.Service;
- 
+import  training.demo.mapper.BaseMapper;
 
 import java.util.ArrayList; 
   
 @Service  
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-
-    public EmployeeService (EmployeeRepository employeeRepository)  {
+    private final BaseMapper baseMapper;
+    public EmployeeService (EmployeeRepository employeeRepository,BaseMapper baseMapper)  {
         this.employeeRepository=employeeRepository;
+        this.baseMapper=baseMapper;
     }
     
     
-    public List<Employee> findAll() {
+    public List<EmployeeDTO> findAll() {
         List<Employee> allEmployees =new ArrayList<Employee>();;
         Iterable<Employee> employees = employeeRepository.findAll();
         employees.forEach(allEmployees::add);
-        return allEmployees;
+        return baseMapper.transformList(EmployeeDTO.class, allEmployees, Employee.class);
     }
     
-    public List<Employee> findEmployeeByName(String name) {
-
+    public List<EmployeeDTO> findEmployeeByName(String name) {
         List<Employee> employees = employeeRepository.findByName(name);
-        return employees;
+        return baseMapper.transformList(EmployeeDTO.class, employees, Employee.class);
     }
     
-    public Long addNewEmployee(Employee employee) {
-         
-    Employee addedEmployee=  employeeRepository.save(employee);
-    
-    return addedEmployee.getId();
+    public Long addNewEmployee(EmployeeDTO employeeDto) {
+        Employee employee= baseMapper.transformFromSourceToDestination(Employee.class, employeeDto, EmployeeDTO.class);
+        Employee addedEmployee=  employeeRepository.save(employee);
+        return addedEmployee.getId();
     }
     
-    public Employee updateEmployee(Employee employee) {
+    public EmployeeDTO updateEmployee(EmployeeDTO employeeDto) {
+        Employee employee= baseMapper.transformFromSourceToDestination(Employee.class, employeeDto, EmployeeDTO.class);
         Employee updatedEmployee=  employeeRepository.save(employee);
-    
-        return updatedEmployee;
+        EmployeeDTO updatedEmployeeDTO= baseMapper.transformFromSourceToDestination(EmployeeDTO.class, updatedEmployee, Employee.class);
+        return updatedEmployeeDTO;
     }
     
     public void delete(long id) {
@@ -48,13 +49,15 @@ public class EmployeeService {
         employeeRepository.delete(toBeDeletedEmployee);
     }
     
-    public Employee findEmployeeByID(Long id) {
+    public EmployeeDTO findEmployeeByID(Long id) {
+        EmployeeDTO existedEmployeeDTO=null;
         Employee existedEmployee=null;
         boolean isExistedEmployee= employeeRepository.existsById(id);
         if(isExistedEmployee){
         existedEmployee= employeeRepository.findById(id).get();
+        existedEmployeeDTO=baseMapper.transformFromSourceToDestination(EmployeeDTO.class, existedEmployee, Employee.class);
         }
-        return existedEmployee;
+        return existedEmployeeDTO;
     }
   
 
