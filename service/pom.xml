@@ -18,6 +18,11 @@
         <artifactId>training.demo.model</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>training.demo</groupId>
+        <artifactId>training.demo.repository</artifactId>
+        <version>${project.version}</version>
+      </dependency>
        </dependencies>
 
 </project>

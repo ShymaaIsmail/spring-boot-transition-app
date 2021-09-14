@@ -15,7 +15,7 @@
 		 <!-- Project modules -->
 		 <dependency>
 			<groupId>training.demo</groupId>
-			<artifactId>training.demo.service.impl</artifactId>
+			<artifactId>training.demo.service</artifactId>
 			<version>${project.version}</version>
 		  </dependency>
 		   
