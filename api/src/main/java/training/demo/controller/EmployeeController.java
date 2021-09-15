@@ -2,11 +2,10 @@ package training.demo.controller;
  
 import java.util.List;
 
-import training.demo.domain.dto.EmployeeDTO;
-import training.demo.domain.entity.Employee;
+import training.demo.domain.dto.EmployeeDTO; 
 import training.demo.service.EmployeeService;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -53,7 +52,6 @@ public class EmployeeController {
         EmployeeDTO updatedEmployeeId= employeeService.updateEmployee(employeeDto);
         return updatedEmployeeId;
     } 
-
-    
+ 
 	 
 }

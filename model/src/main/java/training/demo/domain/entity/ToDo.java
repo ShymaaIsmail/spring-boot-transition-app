@@ -1,5 +1,5 @@
 package training.demo.domain.entity;
-  
+
 import org.joda.time.DateTime;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,12 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.*; 
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -29,7 +25,7 @@ public class ToDo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String description; 
-   private boolean isDone; 
+   private Boolean done; 
    private DateTime targetDate; 
 
 
@@ -38,7 +34,4 @@ public class ToDo {
     @JsonIgnore 
 
    private Employee employee;
-
-   
- 
 }

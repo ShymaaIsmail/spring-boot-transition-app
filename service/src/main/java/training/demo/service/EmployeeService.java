@@ -5,18 +5,17 @@ import java.util.List;
 import training.demo.repository.EmployeeRepository;
 import training.demo.service.EmployeeService;   
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 import  training.demo.mapper.BaseMapper;
 
 import java.util.ArrayList; 
   
 @Service  
+@AllArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final BaseMapper baseMapper;
-    public EmployeeService (EmployeeRepository employeeRepository,BaseMapper baseMapper)  {
-        this.employeeRepository=employeeRepository;
-        this.baseMapper=baseMapper;
-    }
     
     
     public List<EmployeeDTO> findAll() {

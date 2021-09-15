@@ -3,6 +3,7 @@ package training.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import training.demo.domain.dto.ToDoDTO;
 import training.demo.domain.entity.ToDo;
 import training.demo.service.ToDoService;
 
@@ -29,26 +30,26 @@ public class ToDoController {
         this.toDoService=toDoService;
     }
     @GetMapping()
-    public List<ToDo> findAll() {
-       List<ToDo>  ToDos = toDoService.findAll();  
+    public List<ToDoDTO> findAll() {
+       List<ToDoDTO>  ToDos = toDoService.findAll();  
        return ToDos;
     }
  
     
     @GetMapping("/findBy/{id}")
-    public ToDo findById(@PathVariable Long id) {
+    public ToDoDTO findById(@PathVariable Long id) {
         return toDoService.findToDoByID(id);
     }
     
     @PostMapping()
-    public Long postToDo(@RequestBody ToDo ToDo) {
+    public Long postToDo(@RequestBody ToDoDTO ToDo) {
         Long addedToDoId= toDoService.addNewToDo(ToDo);
         return addedToDoId;
     }
 
     @PutMapping()
-    public ToDo putToDo(@RequestBody ToDo ToDo) {
-        ToDo updatedToDoId= toDoService.updateToDo(ToDo);
+    public ToDoDTO putToDo(@RequestBody ToDoDTO ToDo) {
+        ToDoDTO updatedToDoId= toDoService.updateToDo(ToDo);
         return updatedToDoId;
     } 
 
