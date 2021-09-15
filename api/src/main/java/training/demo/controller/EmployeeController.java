@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("employee")
-@CrossOrigin(origins="*")
 public class EmployeeController {
 	  
     protected EmployeeService employeeService;

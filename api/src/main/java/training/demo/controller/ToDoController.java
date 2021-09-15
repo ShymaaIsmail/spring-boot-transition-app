@@ -1,14 +1,10 @@
 package training.demo.controller;
-
-import java.util.ArrayList;
+ 
 import java.util.List;
 
-import training.demo.domain.dto.ToDoDTO;
-import training.demo.domain.entity.ToDo;
+import training.demo.domain.dto.ToDoDTO; 
 import training.demo.service.ToDoService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+  
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("todo")
-@CrossOrigin(origins="*")
 public class ToDoController {
 	  
     protected ToDoService toDoService;
@@ -57,7 +52,7 @@ public class ToDoController {
     @DeleteMapping("/{id}/users/{userId}")
     public void deleteToDo(@PathVariable Long id, @PathVariable Long userId) {
         toDoService.delete(id,userId); 
-    } 
+    }  
     
-	 
+	  
 }
