@@ -1,1 +1,0 @@
-# It is to specify metadata of the JAR when Packing the Spring APP to an exeutable JAR 

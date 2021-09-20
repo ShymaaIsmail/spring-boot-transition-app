@@ -3,12 +3,12 @@
         
         {
             "type": "java",
-            "name": "Spring Boot-ApiApplication<training.demo.api>",
+            "name": "Spring Boot-DemoServiceApplication<training.demo.demoservice>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "training.demo.ApiApplication",
-            "projectName": "training.demo.api",
+            "mainClass": "training.demo.DemoServiceApplication",
+            "projectName": "training.demo.demoservice",
             "args": ""
         }
     ]

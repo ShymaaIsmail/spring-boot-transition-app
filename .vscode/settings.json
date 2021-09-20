@@ -2,5 +2,8 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [
         "Byid"
-    ]
+    ],
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java",
+      },
 }
